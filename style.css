@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    touch-action: manipulation;
+    /* Better touch response */
+}
+
+body {
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    /* Remove tap highlight */
+}
+
+.gameContainer {
+    background-image: url(bg.png);
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+/* Default styles (desktop) */
+.dino {
+    background-image: url(Assests/dino.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 235px;
+    height: 115px;
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+}
+
+.obstacle {
+    background-image: url(Assests/dragon.png);
+    background-size: cover;
+    width: 166px;
+    height: 113px;
+    position: absolute;
+    bottom: 0;
+    left: 44vw;
+}
+
+.scoreCont {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px;
+    font-size: 25px;
+    color: white;
+    z-index: 10;
+    font-family: Arial, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.gameOver {
+    position: absolute;
+    font-size: 45px;
+    text-align: center;
+    width: 100%;
+    color: white;
+    top: 10%;
+    transform: translateY(-50%);
+    z-index: 10;
+    font-family: Arial, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+/* Animations */
+.obstacleAni {
+    animation: obstacleAni 6s linear infinite;
+}
+
+.animateDino {
+    animation: dino 0.6s linear;
+}
+
+
+
+@keyframes dino {
+    0% {
+        bottom: 0;
+    }
+
+    50% {
+        bottom: 422px;
+    }
+
+    100% {
+        bottom: 0;
+    }
+}
+
+@keyframes obstacleAni {
+    0% {
+        left: 100vw;
+    }
+
+    100% {
+        left: -10vw;
+    }
+}
+
+/* ===== MOBILE OPTIMIZATIONS ===== */
+@media (max-width: 768px) {
+
+    /* Raise both dino and obstacle by 15% from bottom */
+    .dino, .obstacle {
+        bottom: 15vh;
+        /* 15% up from bottom */
+        transform: translateY(0);
+        /* Reset any transforms */
+    }
+
+    /* Adjust dino size and position */
+    .dino {
+        width: 120px;
+        height: 60px;
+        left: 10%;
+    }
+
+    /* Adjust obstacle size and speed */
+    .obstacle {
+        width: 100px;
+        height: 70px;
+        left: 70vw;
+    }
+
+    /* Make score more visible */
+    .scoreCont {
+        font-size: 16px;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+    }
+
+    /* Adjust game over text */
+    .gameOver {
+        font-size: 28px;
+        top: 10%;
+        padding: 0 10px;
+    }
+
+    /* Adjust jump height for mobile */
+    @keyframes dino {
+        0% {
+            bottom: 15vh;
+        }
+
+        50% {
+            bottom: calc(15vh + 250px);
+        }
+
+        100% {
+            bottom: 15vh;
+        }
+    }
+
+    /* Faster obstacles on mobile */
+    .obstacleAni {
+        animation: obstacleAni 4s linear infinite;
+    }
+}
+
+/* Tablet specific adjustments */
+@media (min-width: 600px) and (max-width: 768px) {
+    .dino {
+        width: 150px;
+        height: 75px;
+        left: 15%;
+    }
+
+    .obstacle {
+        width: 130px;
+        height: 90px;
+    }
+
+    .gameOver {
+        font-size: 36px;
+    }
+}
+
+/* Keep desktop styles intact */
+@media (min-width: 769px) {
+    /* All desktop styles remain exactly as they were */
+}
